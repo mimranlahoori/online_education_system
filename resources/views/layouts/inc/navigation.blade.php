@@ -23,7 +23,7 @@
                 <a class="link-fx fw-bold tracking-wide mx-auto" href="/">
               <span class="smini-hidden">
                 <i class="fa fa-fire text-primary"></i>
-                <span class="fs-4 text-dual">code</span><span class="fs-4 text-primary">base</span>
+                <span class="fs-4 text-dual">Lahoori</span><span class="fs-4 text-primary">Code</span>
               </span>
                 </a>
             </div>
@@ -59,7 +59,8 @@
                     </a>
                     <ul class="list-inline mt-3 mb-0">
                         <li class="list-inline-item">
-                            <a class="link-fx text-dual fs-sm fw-semibold text-uppercase" href="javascript:void(0)">J. Smith</a>
+                            <a class="link-fx text-dual fs-sm fw-semibold text-uppercase"
+                               href="{{route('profile.edit')}}">{{ Auth::user()->name }}</a>
                         </li>
                         <li class="list-inline-item">
                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
@@ -68,9 +69,14 @@
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="link-fx text-dual" href="javascript:void(0)">
-                                <i class="fa fa-sign-out-alt"></i>
-                            </a>
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a class="link-fx text-dual" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    <i class="fa fa-sign-out-alt"></i>
+                                </a>
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -141,13 +147,13 @@
                     <li class="nav-main-item">
                         <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="/dashboard">
                             <i class="nav-main-link-icon fa fa-house-user"></i>
-                            <span class="nav-main-link-name">Result</span>
+                            <span class="nav-main-link-name">Make Quiz</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="/dashboard">
                             <i class="nav-main-link-icon fa fa-house-user"></i>
-                            <span class="nav-main-link-name">Make Quiz</span>
+                            <span class="nav-main-link-name">Results</span>
                         </a>
                     </li>
                     <li class="nav-main-heading">Finance Managements</li>
@@ -206,7 +212,7 @@
                                 </a>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link{{ request()->is('profile/settings') ? ' active' : '' }}" href="{{ route('security.index') }}">
+                                <a class="nav-main-link{{ request()->is('profile/settings') ? ' active' : '' }}" href="{{ route('settings.index') }}">
                                     <span class="nav-main-link-name">Account Settings</span>
                                 </a>
                             </li>
